@@ -16,7 +16,7 @@ $lnk.Arguments = $argumentos
 $lnk.WorkingDirectory = $PSScriptRoot
 $lnk.WindowStyle = 7  # minimizada
 $lnk.Description = "Girar la pantalla con Ctrl+Alt+Win + flechas"
-$lnk.IconLocation = "$env:SystemRoot\System32\shell32.dll,15"
+$lnk.IconLocation = (Join-Path $PSScriptRoot "assets\girar-pantalla.ico")
 $lnk.Save()
 
 Write-Host "Acceso directo creado en: $acceso"

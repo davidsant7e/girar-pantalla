@@ -13,7 +13,7 @@ Gira la pantalla de Windows con un atajo de teclado.
 | **Ctrl + Alt + Win + ↓** | De cabeza |
 
 - Gira **la pantalla donde está el mouse** (sirve si conectas el TV u otro monitor).
-- Queda un ícono junto al reloj; con clic derecho tienes el mismo menú y **Salir**.
+- Queda el ícono de **X · La Rueda de la Fortuna** junto al reloj; con clic derecho tienes el mismo menú y **Salir**.
 - Si algo se ve mal, **Ctrl + Alt + Win + ↑** siempre la devuelve a la normal.
 - No instala nada: usa PowerShell y .NET, que ya vienen con Windows 11.
 
@@ -48,6 +48,7 @@ Guarda, sal de GirarPantalla (clic derecho → Salir) y ábrelo otra vez.
 | Archivo | Qué hace |
 |---|---|
 | `GirarPantalla.cs` | El programa (C#): gira la pantalla con `ChangeDisplaySettingsEx`, registra los atajos con `RegisterHotKey` y muestra el ícono. |
+| `assets/girar-pantalla.ico` | Ícono del arcano X · La Rueda de la Fortuna (bandeja y acceso directo). |
 | `GirarPantalla.ps1` | Ajustes (atajo) y arranque: compila el `.cs` en memoria con `Add-Type` y lo ejecuta. |
 | `Probar.bat` | Lo abre con consola, para ver errores. |
 | `Instalar.bat` / `.ps1` | Acceso directo en la carpeta Inicio de Windows (`shell:startup`) y lo abre. |

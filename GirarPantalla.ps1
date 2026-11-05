@@ -39,4 +39,5 @@ if ($mods -eq 0) { throw "`$Atajo necesita al menos una tecla (Ctrl, Alt, Shift 
 $codigo = Get-Content -Raw -Encoding UTF8 -Path (Join-Path $PSScriptRoot "GirarPantalla.cs")
 Add-Type -TypeDefinition $codigo -ReferencedAssemblies "System.Windows.Forms", "System.Drawing"
 
-[GirarPantalla.App]::Run($mods, $Atajo, $InvertirLados)
+$icono = Join-Path $PSScriptRoot "assets\girar-pantalla.ico"
+[GirarPantalla.App]::Run($mods, $Atajo, $InvertirLados, $icono)

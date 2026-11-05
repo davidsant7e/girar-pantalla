@@ -207,6 +207,12 @@ namespace GirarPantalla
         /// <param name="invertirLados">true si las flechas izquierda/derecha giran al revés de lo esperado.</param>
         public static void Run(int modificadores, string textoAtajo, bool invertirLados)
         {
+            Run(modificadores, textoAtajo, invertirLados, null);
+        }
+
+        /// <param name="rutaIcono">Archivo .ico del arcano X · La Rueda de la Fortuna (si falta, se dibuja uno).</param>
+        public static void Run(int modificadores, string textoAtajo, bool invertirLados, string rutaIcono)
+        {
             bool esNueva;
             using (Mutex unico = new Mutex(true, "GirarPantalla_dseu1", out esNueva))
             {
@@ -224,7 +230,7 @@ namespace GirarPantalla
                 using (VentanaAtajos atajos = new VentanaAtajos())
                 using (icono = new NotifyIcon())
                 {
-                    icono.Icon = DibujarIcono();
+                    icono.Icon = CargarIcono(rutaIcono);
                     icono.Text = "GirarPantalla (" + textoAtajo + " + flechas)";
                     icono.ContextMenuStrip = CrearMenu(textoAtajo, izquierda, derecha);
                     icono.Visible = true;
@@ -283,7 +289,17 @@ namespace GirarPantalla
             if (icono != null) icono.ShowBalloonTip(4000, "GirarPantalla", texto, tipo);
         }
 
-        /// <summary>Ícono de 16×16: un monitor con una flecha de giro.</summary>
+        private static Icon CargarIcono(string ruta)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(ruta) && System.IO.File.Exists(ruta)) return new Icon(ruta, SystemInformation.SmallIconSize);
+            }
+            catch (Exception) { }
+            return DibujarIcono();
+        }
+
+        /// <summary>Ícono de respaldo 16×16: un monitor con una flecha de giro.</summary>
         private static Icon DibujarIcono()
         {
             using (Bitmap bmp = new Bitmap(16, 16))
